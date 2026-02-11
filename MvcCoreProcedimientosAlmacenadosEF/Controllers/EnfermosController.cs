@@ -30,5 +30,18 @@ namespace MvcCoreProcedimientosAlmacenadosEF.Controllers
             await this.repo.DeleteEnfermoRawAsync(inscripcion);
             return RedirectToAction("Index");
         }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create
+            (Enfermo enf)
+        {
+            await this.repo.CreateEnfermoAsync(enf.Apellido, enf.Direccion, enf.FechaNacimiento, enf.Genero, enf.NumSegSocial);
+            return RedirectToAction("Index");
+        }
     }
 }

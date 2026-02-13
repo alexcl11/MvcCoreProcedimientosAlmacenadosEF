@@ -1,0 +1,71 @@
+﻿@model TrabajadoresModel
+
+@{
+    ViewData["Title"] = "Index";
+    List<string> oficios = (List<string>)ViewData["OFICIOS"];
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<form method="post">
+    <select name="oficio" class="form-control">
+        @foreach (string oficio in oficios)
+            {
+                <option>@oficio</option>
+            }
+    </select>
+    <button class="btn btn-success">Buscar</button>
+</form>
+
+<ul class="list-group">
+    <li class="list-group-item">Personas: @Model.Personas</li>
+    <li class="list-group-item">Media salarial: @Model.Media €</li>
+    <li class="list-group-item">Suma salarial: @Model.Suma €</li>
+</ul>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Id Trabajador
+            </th>
+            <th>
+                Apellido
+            </th>
+            <th>
+                Oficio
+            </th>
+            <th>
+                Salario
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Trabajadores) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdTrabajador)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Apellido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Oficio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Salario)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

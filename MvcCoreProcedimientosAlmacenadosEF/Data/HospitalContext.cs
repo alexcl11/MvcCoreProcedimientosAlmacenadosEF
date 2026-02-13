@@ -1,0 +1,15 @@
+﻿using Microsoft.EntityFrameworkCore;
+using MvcCoreProcedimientosAlmacenadosEF.Models;
+
+namespace MvcCoreProcedimientosAlmacenadosEF.Data
+{
+    public class HospitalContext: DbContext
+    {
+        public HospitalContext(DbContextOptions<HospitalContext> options) : base(options) { }
+
+        public DbSet<VistaEmpleado> VistaEmpleados { get; set; }
+        public DbSet<Enfermo> Enfermos { get; set; }
+        public DbSet<Doctor> Doctores { get; set; }
+        public DbSet<Trabajador> Trabajadores { get; set; }
+    }
+}
